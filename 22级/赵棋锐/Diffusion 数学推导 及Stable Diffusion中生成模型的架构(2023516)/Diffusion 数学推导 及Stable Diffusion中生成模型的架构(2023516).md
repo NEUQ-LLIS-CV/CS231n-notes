@@ -107,3 +107,15 @@
 ## 推导的过程
 
 ![截图](54946dfd2909bc13359ca40404adcc85.png)
+
+## 相比于原本diffusion模型stable diffusion模型所作的一个提升
+是在压缩的潜在的数据的一种提升而不是在像素层面上的提升
+使用OTO encoder（Autoencoder）自动编码器将图像压缩到潜在的空间中，重建图像
+
+## 协调IMAGE-ENCODER与TEXT-ENCODER
+文本提示转化为标记嵌入（基于attention机制转化为特征信息），当然基于text-encoder与image-encoder有多种选择，但都需要经过提前的训练，来使输出表示相同信息的格式，为训练提供一个语义对齐的标准。
+
+## 关于噪声的训练的过程
+* 如何是把三种信息的融合并且训练出噪声
+  ![截图](unet-with-text-steps-v2.png)
+提示：这里的attention的作用是每个token的embedding和每个latent space的每个vector做attention，然后就能得到每个token和每个latent pixel的关系。这里可以去看看transformer中的cross attention（CV的好像也不知道，多模态的同学可以看一下）
